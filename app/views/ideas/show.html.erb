@@ -17,3 +17,21 @@
 
 <%= link_to 'Edit', edit_idea_path(@idea) %> |
 <%= link_to 'Back', ideas_path %>
+<h3>Comments</h3>
+
+<% @idea.comments.each do |comment| %>
+  <p>
+    <%= comment.description %>
+    <% #= link_to 'Destroy', [@idea, comment],method: :delete, data: { confirm: 'Are you sure %>
+  </p>
+<% end %>
+<h2>Add a comment:</h2>
+<%= form_with(model: [@idea, @idea.comments.build]) do |form| %>
+  <p>
+    <%= form.label :description %><br>
+    <%= form.text_area :description %>
+  </p>
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>
